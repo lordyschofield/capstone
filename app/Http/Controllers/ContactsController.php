@@ -45,9 +45,6 @@ class ContactsController extends Controller
             'type' => 'required',
             'source' => 'required',
             'contact_owner' => 'required'
-
-
-
         ]);
 
         $contacts = new Contacts;

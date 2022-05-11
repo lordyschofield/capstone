@@ -36,29 +36,28 @@ class DealsController extends Controller
      */
     public function store(Request $request)
     {
+        
         $this->validate($request,[
             'deal_name'=>'required',
             'deal_owner'=>'required',
             'deal_progress'=>'required',
-            'dealContractNo'=>'required',
+            'dealcontractno'=>'required',
             'deal_value'=>'required',
-            'dealOpenDate'=>'required',
-            'deal_CloseDate'=>'required',
-            'dealClosed'=>'required'
-
-
-
+            'dealopendate'=>'required',
+            'deal_closedate'=>'required',
+            'dealclosed'=>'required'
         ]);
 
         $deals = new Deals;
         $deals->deal_name=$request->input('deal_name');
         $deals->deal_owner=$request->input('deal_owner');
         $deals->deal_progress=$request->input('deal_progress');
-        $deals->dealContractNo=$request->input('dealContractNo');
+        $deals->dealcontractno=$request->input('dealcontractno');
         $deals->deal_value=$request->input('deal_value');
-        $deals->dealOpenDate=$request->input('dealOpenDate');
-        $deals->deal_CloseDate=$request->input('deal_CloseDate');
-        $deals->dealClosed=$request->input('dealClosed');
+        $deals->dealopendate=$request->input('dealopendate');
+        $deals->deal_closedate=$request->input('deal_closedate');
+        $deals->dealclosed=$request->input('dealclosed');
+       
         $deals->save();
 
         return redirect()->route('deals.index');

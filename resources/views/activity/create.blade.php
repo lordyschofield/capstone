@@ -3,13 +3,13 @@
 
 @section('content')
 
-<div class="card bg-gray-300 ">
+<div class="cardw-1/2 bg-blue-300 rounded shadow-2xl p-8 ml-64bg-gray-300 ">
     <div class="card-header mx-5 my-5">
         {{ trans('CREATE') }} {{ trans('NEW ACTIVITY') }}
     </div>
 
-    <div class="card-body">
-        <form method="POST" action="{{ route("activities.store") }}" enctype="multipart/form-data">
+    <div class="card-body text-center items-center">
+        <form method="POST" action="{{ route("activities.store") }}" enctype="multipart/form-data"autocomplete="off">
             @csrf
             <div class="form-group">
                 <label class="required" for="activity_type">Activity Type</label>
@@ -53,7 +53,7 @@
 
             <div class="form-group">
                 <label class="required" for="date">Date</label>
-                <input class="form-control {{ $errors->has('date') ? 'is-invalid' : '' }}" type="date" name="date" value="{{ old('date', '') }}" required>
+                <input class="form-control w-56 {{ $errors->has('date') ? 'is-invalid' : '' }}" type="date" name="date" value="{{ old('date', '') }}" required>
                 @if($errors->has('date'))
                     <div class="invalid-feedback">
                         {{ $errors->first('date') }}
@@ -64,7 +64,7 @@
 
             <div class="form-group">
                 <label class="required" for="time">Time</label>
-                <input class="form-control {{ $errors->has('time') ? 'is-invalid' : '' }}" type="time" name="time" value="{{ old('time', '') }}" required>
+                <input class="form-control w-56 {{ $errors->has('time') ? 'is-invalid' : '' }}" type="time" name="time" value="{{ old('time', '') }}" required>
                 @if($errors->has('time'))
                     <div class="invalid-feedback">
                         {{ $errors->first('time') }}
@@ -82,11 +82,9 @@
                     </div>
                 @endif
                 <datalist id="Priority">
-                    <option value="Internet Explorer">
-                    <option value="Firefox">
-                    <option value="Chrome">
-                    <option value="Opera">
-                    <option value="Safari">
+                    <option value="High">
+                    <option value="Low">
+                
                 </datalist>
             </div>
 
@@ -108,6 +106,8 @@
                     SAVE
                 </button>
             </div>
+        </div>
+    </div>
         </form>
     </div>
 </div>

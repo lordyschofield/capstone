@@ -18,11 +18,11 @@ class CreateDealsTable extends Migration
             $table->string('deal_name');
             $table->string('deal_owner');
             $table->string('deal_progress');
-            $table->string('dealContractNo');
+            $table->string('dealcontractno');
             $table->string('deal_value');
-            $table->date('dealOpenDate');
-            $table->date('deal_CloseDate');
-            $table->string('dealClosed');
+            $table->date('dealopendate');
+            $table->date('deal_closedate');
+            $table->string('dealclosed');
             $table->timestamps();
         });
     }

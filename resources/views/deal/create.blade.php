@@ -3,30 +3,23 @@
 
 @section('content')
 
-<div class="card bg-gray-300 ">
+<div class="card w-1/2 bg-blue-300 rounded shadow-2xl p-8 ml-64">
     <div class="card-header mx-5 my-5">
         {{ trans('CREATE') }} {{ trans('NEW DEAL') }}
     </div>
-
+    <div class="card-body text-center items-center">
     <div class="card-body">
-        <form method="POST" action="{{ route("deals.store") }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route("deals.store") }}" enctype="multipart/form-data" autocomplete="off">
             @csrf
             <div class="form-group">
                 <label class="required" for="deal_name">Deal Name</label>
-                <input list="ActivityType" class="form-control {{ $errors->has('deal_name') ? 'is-invalid' : '' }}" type="text" name="deal_name" id="deal_name" value="{{ old('deal_name', '') }}" required>
+                <input class="form-control {{ $errors->has('deal_name') ? 'is-invalid' : '' }}" type="text" name="deal_name" id="deal_name" value="{{ old('deal_name', '') }}" required>
                 @if($errors->has('deal_name'))
                     <div class="invalid-feedback">
                         {{ $errors->first('deal_name') }}
                     </div>
                 @endif
-                <datalist id="ActivityType">
-                    <option value="Internet Explorer">
-                    <option value="Firefox">
-                    <option value="Chrome">
-                    <option value="Opera">
-                    <option value="Safari">
-                </datalist>
-
+                
             </div>
 
             <div class="form-group">
@@ -58,11 +51,11 @@
             </div>
 
             <div class="form-group">
-                <label class="required" for="dealContractNo">Contract No</label>
-                <input class="form-control {{ $errors->has('dealContractNo') ? 'is-invalid' : '' }}" type="number" name="dealContractNo" value="{{ old('dealContractNo', '') }}" required>
-                @if($errors->has('dealContractNo'))
+                <label class="required" for="dealcontractno">Contract No</label>
+                <input class="form-control {{ $errors->has('dealcontractno') ? 'is-invalid' : '' }}" type="number" name="dealcontractno" value="{{ old('dealcontractno', '') }}" required>
+                @if($errors->has('dealcontractno'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('dealContractNo') }}
+                        {{ $errors->first('dealcontractno') }}
                     </div>
                 @endif
                 
@@ -82,22 +75,22 @@
 
 
             <div class="form-group">
-                <label class="required" for="dealOpenDate">Open Date</label>
-                <input class="form-control {{ $errors->has('dealOpenDate') ? 'is-invalid' : '' }}" type="date" name="dealOpenDate" value="{{ old('dealOpenDate', '') }}" required>
-                @if($errors->has('dealOpenDate'))
+                <label class="required" for="dealopendate">Open Date</label>
+                <input class="form-control w-56 {{ $errors->has('dealopendate') ? 'is-invalid' : '' }}" type="date" name="dealopendate" value="{{ old('dealopendate', '') }}" required>
+                @if($errors->has('dealopendate'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('dealOpenDate') }}
+                        {{ $errors->first('dealopendate') }}
                     </div>
                 @endif
                 
             </div>
 
             <div class="form-group">
-                <label class="required" for="deal_CloseDate">Closed Date</label>
-                <input class="form-control {{ $errors->has('deal_CloseDate') ? 'is-invalid' : '' }}" type="date" name="deal_CloseDate" value="{{ old('deal_CloseDate', '') }}" required>
-                @if($errors->has('deal_CloseDate'))
+                <label class="required" for="deal_closedate">Closed Date</label>
+                <input class="form-control w-56 {{ $errors->has('deal_closedate') ? 'is-invalid' : '' }}" type="date" name="deal_closedate" value="{{ old('deal_closedate', '') }}" required>
+                @if($errors->has('deal_closedate'))
                     <div class="invalid-feedback">
-                        {{ $errors->first('deal_CloseDate') }}
+                        {{ $errors->first('deal_closedate') }}
                     </div>
                 @endif
                 
@@ -124,8 +117,10 @@
                     SAVE
                 </button>
             </div>
-        </form>
+        </div>
     </div>
+        </form>
+</div>
 </div>
 
 

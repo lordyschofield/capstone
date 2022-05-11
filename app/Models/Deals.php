@@ -15,11 +15,11 @@ class Deals extends Model
         'deal_name',
         'deal_owner',
         'deal_progress',
-        'dealContractNo',
+        'dealcontractno',
         'deal_value',
-        'dealOpenDate',
-        'deal_CloseDate',
-        'dealClosed'
+        'dealopendate',
+        'deal_closedate',
+        'dealclosed'
         
     ];
 }
