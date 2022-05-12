@@ -1,8 +1,12 @@
 <?php
 
+
 use App\Http\Controllers\Setting\Admin\EmployeeController;
 use App\Http\Controllers\Setting\Employee\ProfileController;
 use App\Http\Controllers\LeadsController;
+use App\Http\Controllers\SearchLeadsController;
+use App\Http\Controllers\SearchActivitiesController;
+use App\Http\Controllers\SearchContactsController;
 use App\Http\Controllers\ContactsController;
 use App\Http\Controllers\ActivitiesController;
 use App\Http\Controllers\DealsController;
@@ -70,8 +74,10 @@ Route::middleware(['auth'])->group(function () {
         // Change password
     });
 
-
-
+    // search route
+    Route::get("search-leads",[SearchLeadsController::class,'index'])->name('search-leads');
+    Route::get("search-activities",[SearchActivitiesController::class,'index'])->name('search-activities');
+    Route::get("search-contacts",[SearchContactsController::class,'index'])->name('search-contacts');
 
     /*
      |--------------------------------------------------------------------------

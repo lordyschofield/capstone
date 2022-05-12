@@ -6,14 +6,13 @@
 
     <div style="margin-bottom: 10px;" class="row float-right" >
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('activities.create') }}">
-                {{ trans('Create') }} {{ trans('Contacts') }}
+            <a class="btn btn-success" href="{{ route('leads.create') }}">
+                {{ trans('Create') }} {{ trans('Leads') }}
             </a>
         </div>
     </div>
 
-
-    <form action="{{route('search-activities')}}" method="GET">
+    <form action="{{route('search-leads')}}" method="GET">
         @csrf
     <div class="flex items-center pb-3">
         <div class="flex border-2 rounded">
@@ -25,10 +24,9 @@
       </div>
     </form>
 
-
     <div class="card">
       <div class="card-header ml-2">
-          {{ trans('Contacts TABLE') }} {{ trans('') }}
+          {{ trans('LEADS TABLE') }} {{ trans('') }}
       </div>
   
       <div class="card-body">
@@ -43,30 +41,35 @@
                               {{ trans('ID') }}
                           </th>
                           <th>
-                              {{ trans('Activity Type') }}
+                              {{ trans('LEAD NAME') }}
                           </th>
                           
                           <th>
-                            {{ trans('Subject') }}
+                            {{ trans('COMPANY') }}
                         </th>
 
                         <th>
-                            {{ trans('Status') }}
+                            {{ trans('EMAIL') }}
                         </th>
                         
                         <th>
-                            {{ trans('Date') }}
+                            {{ trans('PHONE') }}
                         </th>
                         <th>
-                            {{ trans('time') }}
+                            {{ trans('LEAD SOURCE') }}
                         </th>
                         <th>
-                            {{ trans('priority') }}
+                            {{ trans('LEAD OWNER') }}
                         </th>
 
                         <th>
-                            {{ trans('activity owner') }}
+                            {{ trans('LEAD STATUS') }}
                         </th>
+
+                        <th>
+                            &nbsp;
+                        </th>
+
 
                           <th>
                               &nbsp;
@@ -74,35 +77,44 @@
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach($activities as $key => $activity)
-                          <tr class="" data-entry-id="{{ $activity->id }}">
+                      @foreach($leads as $key => $lead)
+                          <tr class="" data-entry-id="{{ $lead->id }}">
                                 <td></td>
                               <td>
-                                  {{ $activity->id ?? '' }}
+                                  {{ $lead->id ?? '' }}
                               </td>
                               <td>
-                                  {{ $activity->activity_type ?? '' }}
+                                  {{ $lead->lead_name ?? '' }}
                               </td>
-                            
                               <td>
-                                {{ $activity->subject ?? '' }}
+                                {{ $lead->company ?? '' }}
+                              </td>
+                              <td>
+                                {{ $lead->email ?? '' }}
+                            </td>
+                            <td>
+                                {{ $lead->phone ?? '' }}
+                            </td>
+                            <td>
+                                {{ $lead->lead_source ?? '' }}
+                            </td>
+                            <td>
+                                {{ $lead->lead_owner ?? '' }}
+                            </td>
+                            <td>
+                                {{ $lead->lead_status ?? '' }}
                             </td>
                                             
                             <td>
-                                {{ $activity->status ?? '' }}
-                            </td>
-
-                            <td>
-                                {{ $activity->date ?? '' }}
-                            </td>
-                            <td>
-                                {{ $activity->time ?? '' }}
-                            </td>
-                            <td>
-                                {{ $activity->priority ?? '' }}
-                            </td>
-                            <td>
-                                {{ $activity->activity_owner ?? '' }}
+                                <form action="{{ route('leads.destroy',$lead->id) }}" method="POST">
+   
+                                    <a class="btn btn-primary" href="{{ route('leads.edit',$lead->id) }}">Edit</a>
+                   
+                                    @csrf
+                                    @method('DELETE')
+                      
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
                             </td>
                           </tr>
                       @endforeach
@@ -113,18 +125,12 @@
   </div>
   
   
+  <footer class="p-4 mt-96 footer bg-base-300 text-base-content footer-center">
+    <div>
+      <p>Copyright © 2022 - All right reserved by Philippine Medical Supplies</p>
+    </div>
+  </footer>
   
-  
-  
-
-          
-
-  
-          
-</div>
-
-
-
 
   
       

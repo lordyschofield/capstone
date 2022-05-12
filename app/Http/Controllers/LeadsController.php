@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Models\Leads;
 use Illuminate\Http\Request;
 
@@ -12,10 +12,18 @@ class LeadsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $leads= Leads::all();
-        return view ('lead.leads')->with('leads',$leads);
+        $search = $request['search ']?? "";
+        if ($search !=""){
+            $leads = Leads::where('company','LIKE', $search)->get();
+        } else{
+            $leads= Leads::all();
+        }
+
+
+        $data = compact('search');
+        return view ('lead.index')->with('leads',$leads,$data);
     }
 
     /**
@@ -81,7 +89,7 @@ class LeadsController extends Controller
      */
     public function edit(leads $leads)
     {
-        //
+        return view('lead.edit',compact('leads'));
     }
 
     /**
@@ -93,7 +101,20 @@ class LeadsController extends Controller
      */
     public function update(Request $request, leads $leads)
     {
-        //
+        $request->validate([
+            'lead_name' => 'required',
+            'company' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'lead_source' => 'required',
+            'lead_owner' => 'required',
+            'lead_status' => 'required',
+        ]);
+  
+        $leads->update($request->all());
+  
+        return redirect()->route('lead.index')
+                        ->with('success','Data updated successfully');
     }
 
     /**
@@ -104,6 +125,22 @@ class LeadsController extends Controller
      */
     public function destroy(leads $leads)
     {
-        //
+        $leads->delete();
+  
+        return redirect('/leads')->with('success','Blogs deleted successfully');
     }
+
+    
+    public function search(Request $request){
+        if($request->isMethod('post'))
+        {
+            $search=$request->get('search');
+            $data= Leads::where('company', 'LIKE', '%'. $search . '%')->paginate(5);
+
+        }
+
+
+    }
+
+
 }

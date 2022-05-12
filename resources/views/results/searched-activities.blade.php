@@ -6,26 +6,29 @@
 
     <div style="margin-bottom: 10px;" class="row float-right" >
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('leads.create') }}">
-                {{ trans('Create') }} {{ trans('Leads') }}
+            <a class="btn btn-success" href="{{ route('activities.create') }}">
+                {{ trans('Create') }} {{ trans('Contacts') }}
             </a>
         </div>
     </div>
+
+
+    <form action="{{route('search-activities')}}" method="GET">
+        @csrf
     <div class="flex items-center pb-3">
         <div class="flex border-2 rounded">
-            <input type="text" class="px-4 py-2 w-80" placeholder="Search...">
-            <button class="flex items-center justify-center px-4 border-l">
-                <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24">
-                    <path
-                        d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z" />
-                </svg>
-            </button>
+            <input type="text" name="query" id="query" class="px-4 py-2 w-80" value="" placeholder="Search...">
+            <input type="submit" class="flex items-center justify-center px-4 border-l">
+                
+            </input>
         </div>  
       </div>
+    </form>
+
+
     <div class="card">
       <div class="card-header ml-2">
-          {{ trans('LEADS TABLE') }} {{ trans('') }}
+          {{ trans('Contacts TABLE') }} {{ trans('') }}
       </div>
   
       <div class="card-body">
@@ -40,29 +43,29 @@
                               {{ trans('ID') }}
                           </th>
                           <th>
-                              {{ trans('LEAD NAME') }}
+                              {{ trans('Activity Type') }}
                           </th>
                           
                           <th>
-                            {{ trans('COMPANY') }}
+                            {{ trans('Subject') }}
                         </th>
 
                         <th>
-                            {{ trans('EMAIL') }}
+                            {{ trans('Status') }}
                         </th>
                         
                         <th>
-                            {{ trans('PHONE') }}
+                            {{ trans('Date') }}
                         </th>
                         <th>
-                            {{ trans('LEAD SOURCE') }}
+                            {{ trans('time') }}
                         </th>
                         <th>
-                            {{ trans('LEAD OWNER') }}
+                            {{ trans('priority') }}
                         </th>
 
                         <th>
-                            {{ trans('LEAD STATUS') }}
+                            {{ trans('activity owner') }}
                         </th>
 
                           <th>
@@ -71,34 +74,36 @@
                       </tr>
                   </thead>
                   <tbody>
-                      @foreach($leads as $key => $lead)
-                          <tr class="" data-entry-id="{{ $lead->id }}">
+                      @foreach($activities as $key => $activity)
+                          <tr class="" data-entry-id="{{ $activity->id }}">
                                 <td></td>
                               <td>
-                                  {{ $lead->id ?? '' }}
+                                  {{ $activity->id ?? '' }}
                               </td>
                               <td>
-                                  {{ $lead->lead_name ?? '' }}
+                                  {{ $activity->activity_type ?? '' }}
                               </td>
+                            
                               <td>
-                                {{ $lead->company ?? '' }}
-                              </td>
-                              <td>
-                                {{ $lead->email ?? '' }}
-                            </td>
-                            <td>
-                                {{ $lead->phone ?? '' }}
-                            </td>
-                            <td>
-                                {{ $lead->lead_source ?? '' }}
-                            </td>
-                            <td>
-                                {{ $lead->lead_owner ?? '' }}
-                            </td>
-                            <td>
-                                {{ $lead->lead_status ?? '' }}
+                                {{ $activity->subject ?? '' }}
                             </td>
                                             
+                            <td>
+                                {{ $activity->status ?? '' }}
+                            </td>
+
+                            <td>
+                                {{ $activity->date ?? '' }}
+                            </td>
+                            <td>
+                                {{ $activity->time ?? '' }}
+                            </td>
+                            <td>
+                                {{ $activity->priority ?? '' }}
+                            </td>
+                            <td>
+                                {{ $activity->activity_owner ?? '' }}
+                            </td>
                           </tr>
                       @endforeach
                   </tbody>
@@ -108,12 +113,18 @@
   </div>
   
   
-  <footer class="p-4 mt-96 footer bg-base-300 text-base-content footer-center">
-    <div>
-      <p>Copyright © 2022 - All right reserved by Philippine Medical Supplies</p>
-    </div>
-  </footer>
   
+  
+  
+
+          
+
+  
+          
+</div>
+
+
+
 
   
       

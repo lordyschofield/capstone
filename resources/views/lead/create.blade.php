@@ -46,7 +46,7 @@
 
             <div class="form-group">
                 <label class="required" for="phone">Phone</label>
-                <input class="mb-2 form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" placeholder="0912-345-6789" type="tel" pattern="[0-9]{4}-[0-9]{3}-[0-9]{4}" name="phone" value="{{ old('phone', '') }}" required>
+                <input class="mb-2 form-control {{ $errors->has('phone') ? 'is-invalid' : '' }}" placeholder="0912-345-6789" type="tel" pattern="[0-9]{4}[0-9]{3}[0-9]{4}" name="phone" value="{{ old('phone', '') }}" required>
                 @if($errors->has('phone'))
                     <div class="invalid-feedback">
                         {{ $errors->first('phone') }}
